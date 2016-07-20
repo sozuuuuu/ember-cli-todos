@@ -2,7 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'li',
-  classNameBindings: ['todo.isCompleted:completed', 'isEditing:editing'],
+  classNames: ['ta-TodoItem'],
+  classNameBindings: ['todo.isCompleted:ta-TodoItem-completed', 'isEditing:ta-TodoItem-editing'],
 
   init() {
     this._super(...arguments);

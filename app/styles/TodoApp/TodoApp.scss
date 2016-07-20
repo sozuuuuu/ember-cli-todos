@@ -1,0 +1,303 @@
+// namespace: ta
+
+// sub-components
+// - Header
+// - Main
+//   - TodoList
+// - Footer
+//   - Filters
+// - Info
+
+.ta-TodoApp {
+	background: #fff;
+	margin: 130px 0 40px 0;
+	position: relative;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+	            0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+// sub-component: Header
+
+.ta-Header {
+}
+
+.ta-Header-Title {
+	position: absolute;
+	top: -155px;
+	width: 100%;
+	font-size: 100px;
+	font-weight: 100;
+	text-align: center;
+	color: rgba(175, 47, 47, 0.15);
+	-webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+}
+
+.ta-Header-NewTodo {
+  // .edit
+	position: relative;
+	margin: 0;
+	width: 100%;
+	font-size: 24px;
+	font-family: inherit;
+	font-weight: inherit;
+	line-height: 1.4em;
+	border: 0;
+	outline: none;
+	color: inherit;
+	padding: 6px;
+	border: 1px solid #999;
+	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+
+	padding: 16px 16px 16px 60px;
+	border: none;
+	background: rgba(0, 0, 0, 0.003);
+	box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+}
+
+// sub-component: Main
+
+.ta-Main {
+	position: relative;
+	z-index: 2;
+	border-top: 1px solid #e6e6e6;
+}
+
+.ta-Main-ToggleAll {
+	position: absolute;
+	top: -55px;
+	left: -12px;
+	width: 60px;
+	height: 34px;
+	text-align: center;
+	border: none; /* Mobile Safari */
+
+  &:before {
+    content: '❯';
+    font-size: 22px;
+    color: #e6e6e6;
+    padding: 10px 27px 10px 27px;
+  }
+
+  &:checked:before {
+    color: #737373;
+  }
+}
+
+.ta-TodoList {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+// sub-component: TodoItem
+
+.ta-TodoItem {
+	position: relative;
+	font-size: 24px;
+	border-bottom: 1px solid #ededed;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    .ta-TodoItem-Destroy {
+      display: block;
+    }
+  }
+}
+
+.ta-TodoItem.ta-TodoItem-editing {
+	border-bottom: none;
+	padding: 0;
+
+  .ta-TodoItem-View {
+    display: none;
+  }
+
+  &:last-child {
+    margin-bottom: -1px;
+  }
+}
+
+// is this ok?
+.ta-TodoItem.ta-TodoItem-completed {
+  .ta-TodoItem-Label {
+    color: #d9d9d9;
+    text-decoration: line-through;
+  }
+}
+
+.ta-TodoItem-Toggle {
+	text-align: center;
+	width: 40px;
+	/* auto, since non-WebKit browsers doesn't support input styling */
+	height: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto 0;
+	border: none; /* Mobile Safari */
+	-webkit-appearance: none;
+	appearance: none;
+
+  &:after {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
+  }
+
+  &:checked:after {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+  }
+}
+
+.ta-TodoItem-Label {
+	white-space: pre;
+	word-break: break-word;
+	padding: 15px 60px 15px 15px;
+	margin-left: 45px;
+	display: block;
+	line-height: 1.2;
+	transition: color 0.4s;
+}
+
+.ta-TodoItem-Destroy {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 10px;
+	bottom: 0;
+	width: 40px;
+	height: 40px;
+	margin: auto 0;
+	font-size: 30px;
+	color: #cc9a9a;
+	margin-bottom: 11px;
+	transition: color 0.2s ease-out;
+
+  &:hover {
+    color: #af5b5e;
+  }
+
+  &:after {
+    content: '×';
+  }
+}
+
+.ta-TodoItem-Edit {
+	display: none;
+}
+
+// sub-component: TodoList
+
+.ta-TodoList {
+}
+
+// sub-component: Footer
+
+.ta-Footer {
+	color: #777;
+	padding: 10px 15px;
+	height: 20px;
+	text-align: center;
+	border-top: 1px solid #e6e6e6;
+
+  &:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    overflow: hidden;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+                0 8px 0 -3px #f6f6f6,
+                0 9px 1px -3px rgba(0, 0, 0, 0.2),
+                0 16px 0 -6px #f6f6f6,
+                0 17px 2px -6px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.ta-Footer-Count {
+	float: left;
+	text-align: left;
+}
+
+.ta-Footer-CountEm {
+	font-weight: 300;
+}
+
+.ta-Filters {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	right: 0;
+	left: 0;
+}
+
+.ta-Filter {
+	display: inline;
+}
+
+%ta-Filter-Toggle-selected {
+}
+
+.ta-Filter-Toggle {
+	color: inherit;
+	margin: 3px;
+	padding: 3px 7px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+
+  &:hover {
+    border-color: rgba(175, 47, 47, 0.1);
+  }
+}
+
+.ta-Filter-Toggle.ta-Filter-Toggle-selected {
+	border-color: rgba(175, 47, 47, 0.2);
+}
+
+.ta-Footer-ClearCompleted {
+	float: right;
+	position: relative;
+	line-height: 20px;
+	text-decoration: none;
+	cursor: pointer;
+	visibility: hidden;
+	position: relative;
+
+  &:after {
+    visibility: visible;
+    content: 'Clear completed';
+    position: absolute;
+    top: 0;
+    right: 0;
+    white-space: nowrap;
+  }
+
+  &:hover:after {
+    text-decoration: underline;
+  }
+}
+
+// sub-component: Info
+
+.ta-Info {
+	margin: 65px auto 0;
+	color: #bfbfbf;
+	font-size: 10px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	text-align: center;
+}
+
+.ta-Info-Edit {
+	line-height: 1;
+}
